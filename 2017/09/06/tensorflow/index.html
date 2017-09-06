@@ -5,13 +5,17 @@
   
   <title>knight</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
+  <meta name="description" content="#Tensorflow常用命令#  ####1. the difference####  sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_class">
+<meta property="og:type" content="article">
 <meta property="og:title" content="knight">
-<meta property="og:url" content="http://zhugy.com/index.html">
+<meta property="og:url" content="http://zhugy.com/2017/09/06/tensorflow/index.html">
 <meta property="og:site_name" content="knight">
+<meta property="og:description" content="#Tensorflow常用命令#  ####1. the difference####  sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_class">
 <meta property="og:locale" content="zh">
+<meta property="og:updated_time" content="2017-08-22T09:15:22.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="knight">
+<meta name="twitter:description" content="#Tensorflow常用命令#  ####1. the difference####  sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_class">
   
     <link rel="alternate" href="/atom.xml" title="knight" type="application/atom+xml">
   
@@ -60,155 +64,7 @@
   </div>
 </header>
       <div class="outer">
-        <section id="main">
-  
-    <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/06/git/" class="article-date">
-  <time datetime="2017-09-06T03:20:16.127Z" itemprop="datePublished">2017-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h1><hr>
-<p>####1. git stash：清除更改</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/git/" data-id="cj78ghywa00009lpvuukm264a" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-maven" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/06/maven/" class="article-date">
-  <time datetime="2017-09-06T03:20:14.871Z" itemprop="datePublished">2017-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="maven常用命令"><a href="#maven常用命令" class="headerlink" title="#maven常用命令"></a>#maven常用命令</h2><p>####1. 打包命令,忽略测试</p>
-<ul>
-<li>mvn package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true<br>####2. 编译</li>
-<li>mvn compile<br>####3. 拷贝到本地库</li>
-<li>mvn install</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/maven/" data-id="cj78ghywh00029lpvzvfal66l" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-python" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/06/python/" class="article-date">
-  <time datetime="2017-09-06T03:20:13.403Z" itemprop="datePublished">2017-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="python常用命令"><a href="#python常用命令" class="headerlink" title="python常用命令"></a>python常用命令</h1><hr>
-<p>####1. 使用argparse传递命令行参数</p>
-<ul>
-<li><p>格式</p>
-<pre><code>import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument(
-&apos;-v&apos;, &apos;--version&apos;,
-type=float, default=0.2, help=&apos;the version&apos;)
-# 对于bool
-parser.add_argument(&apos;--feature&apos;, dest=&apos;feature&apos;, action=&apos;store_true&apos;)
- parser.add_argument(&apos;--no-feature&apos;, dest=&apos;feature&apos;, action=&apos;store_false&apos;)
-args = parser.parse_args()
-print(args.version)
-print(args.feature)
-</code></pre></li>
-<li><p>调用</p>
-<pre><code>python test.py -v 0.3 --feature
-</code></pre><p>####2. 获取当前路径<br>  os.path.abspath(‘.’)<br>  #或者<br>  os.system(‘pwd’)</p>
-</li>
-</ul>
-<p>####3. 判断类型<br>    t=[1,2]<br>    print(isinstance(t, list))</p>
-<p>####4. 对字典排序</p>
-<pre><code>#按照values从大到小排序
-for key, values in sorted(d.items(), key=lambda item:item[1]，reverse=True)
-    print(&apos;key:{}/value:{}&apos;.format(key, value))
-</code></pre><p>####5. 遍历文件的两种方法</p>
-<pre><code>os.listdir(path)
-
-for root, dirs, files in os.walk(path):
-    for file in files:
-        print(file)
-</code></pre><p>####6. 删除文件和目录<br>    import os<br>    import shutil<br>    os.remove(‘D:/1.txt’)<br>    shutil.rmtree(‘D:/test/‘)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/python/" data-id="cj78ghywi00039lpvqpif8f1b" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-pytorch" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/06/pytorch/" class="article-date">
-  <time datetime="2017-09-06T03:20:11.899Z" itemprop="datePublished">2017-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="pytorch常用命令"><a href="#pytorch常用命令" class="headerlink" title="pytorch常用命令"></a>pytorch常用命令</h2><p>####1. 形状改变<br>    x=torch.randn(2,3)<br>    x.view(-1, 6)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/pytorch/" data-id="cj78ghywj00049lpvxomyp4fn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-tensorflow" class="article article-type-post" itemscope itemprop="blogPost">
+        <section id="main"><article id="post-tensorflow" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/tensorflow/" class="article-date">
   <time datetime="2017-09-06T03:20:07.140Z" itemprop="datePublished">2017-09-06</time>
@@ -359,82 +215,28 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
     </footer>
   </div>
   
-</article>
-
-
+    
+<nav id="article-nav">
   
-    <article id="post-shell" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/06/shell/" class="article-date">
-  <time datetime="2017-09-06T03:20:07.123Z" itemprop="datePublished">2017-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="Shell-常用命令"><a href="#Shell-常用命令" class="headerlink" title="#Shell 常用命令"></a>#Shell 常用命令</h2><h4 id="查找字符串并显示行号"><a href="#查找字符串并显示行号" class="headerlink" title="查找字符串并显示行号"></a>查找字符串并显示行号</h4><p>grep -n ‘查找我’ 文件名</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/shell/" data-id="cj78ghywk00059lpv7m5rl7ns" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-hello-world" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/06/hello-world/" class="article-date">
-  <time datetime="2017-09-06T02:52:24.342Z" itemprop="datePublished">2017-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-      <header class="article-header">
+    <a href="/2017/09/06/pytorch/" id="article-nav-newer" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Newer</strong>
+      <div class="article-nav-title">
         
+          (no title)
+        
+      </div>
+    </a>
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2017/09/06/hello-world/">Hello World</a>
-    </h1>
   
+    <a href="/2017/09/06/shell/" id="article-nav-older" class="article-nav-link-wrap">
+      <strong class="article-nav-caption">Older</strong>
+      <div class="article-nav-title"></div>
+    </a>
+  
+</nav>
 
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>Welcome to <a href="https://hexo.io/" target="_blank" rel="external">Hexo</a>! This is your very first post. Check <a href="https://hexo.io/docs/" target="_blank" rel="external">documentation</a> for more info. If you get any problems when using Hexo, you can find the answer in <a href="https://hexo.io/docs/troubleshooting.html" target="_blank" rel="external">troubleshooting</a> or you can ask me on <a href="https://github.com/hexojs/hexo/issues" target="_blank" rel="external">GitHub</a>.</p>
-<h2 id="Quick-Start"><a href="#Quick-Start" class="headerlink" title="Quick Start"></a>Quick Start</h2><h3 id="Create-a-new-post"><a href="#Create-a-new-post" class="headerlink" title="Create a new post"></a>Create a new post</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo new <span class="string">"My New Post"</span></div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/writing.html" target="_blank" rel="external">Writing</a></p>
-<h3 id="Run-server"><a href="#Run-server" class="headerlink" title="Run server"></a>Run server</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo server</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/server.html" target="_blank" rel="external">Server</a></p>
-<h3 id="Generate-static-files"><a href="#Generate-static-files" class="headerlink" title="Generate static files"></a>Generate static files</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo generate</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/generating.html" target="_blank" rel="external">Generating</a></p>
-<h3 id="Deploy-to-remote-sites"><a href="#Deploy-to-remote-sites" class="headerlink" title="Deploy to remote sites"></a>Deploy to remote sites</h3><figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">$ hexo deploy</div></pre></td></tr></table></figure>
-<p>More info: <a href="https://hexo.io/docs/deployment.html" target="_blank" rel="external">Deployment</a></p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/hello-world/" data-id="cj78ghywf00019lpvy2swvxz0" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
   
 </article>
-
-
-  
 
 </section>
         
