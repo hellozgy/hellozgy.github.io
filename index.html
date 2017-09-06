@@ -65,7 +65,7 @@
     <article id="post-tensorflow" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/tensorflow/" class="article-date">
-  <time datetime="2017-09-06T03:30:12.247Z" itemprop="datePublished">2017-09-06</time>
+  <time datetime="2017-09-06T03:33:20.330Z" itemprop="datePublished">2017-09-06</time>
 </a>
     
   </div>
@@ -216,7 +216,7 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/tensorflow/" data-id="cj78gw4yh0006w7pvje8qnvl7" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/tensorflow/" data-id="cj78gyp7b0006xepvfcfbvdsk" class="article-share-link">Share</a>
       
       
     </footer>
@@ -229,7 +229,7 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
     <article id="post-shell" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/shell/" class="article-date">
-  <time datetime="2017-09-06T03:28:55.025Z" itemprop="datePublished">2017-09-06</time>
+  <time datetime="2017-09-06T03:33:20.298Z" itemprop="datePublished">2017-09-06</time>
 </a>
     
   </div>
@@ -248,12 +248,12 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="查找字符串并显示行号"><a href="#查找字符串并显示行号" class="headerlink" title="查找字符串并显示行号"></a>查找字符串并显示行号</h4><p>grep -n ‘查找我’ 文件名</p>
+        <h4 id="1-查找字符串并显示行号"><a href="#1-查找字符串并显示行号" class="headerlink" title="1. 查找字符串并显示行号"></a>1. 查找字符串并显示行号</h4><p>grep -n ‘查找我’ 文件名</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/shell/" data-id="cj78gw4yg0005w7pv7lkq7rtq" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/shell/" data-id="cj78gyp7a0005xepv72tqw6ha" class="article-share-link">Share</a>
       
       
     </footer>
@@ -266,7 +266,7 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
     <article id="post-pytorch" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/pytorch/" class="article-date">
-  <time datetime="2017-09-06T03:28:54.996Z" itemprop="datePublished">2017-09-06</time>
+  <time datetime="2017-09-06T03:33:20.270Z" itemprop="datePublished">2017-09-06</time>
 </a>
     
   </div>
@@ -285,12 +285,13 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>####1. 形状改变<br>    x=torch.randn(2,3)<br>    x.view(-1, 6)</p>
-
+        <h4 id="1-形状改变"><a href="#1-形状改变" class="headerlink" title="1. 形状改变"></a>1. 形状改变</h4><pre><code>x=torch.randn(2,3)
+x.view(-1, 6)
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/pytorch/" data-id="cj78gw4ye0003w7pvdf4dvck4" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/pytorch/" data-id="cj78gyp790004xepvo1430nxw" class="article-share-link">Share</a>
       
       
     </footer>
@@ -303,7 +304,7 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
     <article id="post-python" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/python/" class="article-date">
-  <time datetime="2017-09-06T03:28:54.969Z" itemprop="datePublished">2017-09-06</time>
+  <time datetime="2017-09-06T03:33:20.243Z" itemprop="datePublished">2017-09-06</time>
 </a>
     
   </div>
@@ -322,8 +323,7 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>####1. 使用argparse传递命令行参数</p>
-<ul>
+        <h4 id="1-使用argparse传递命令行参数"><a href="#1-使用argparse传递命令行参数" class="headerlink" title="1. 使用argparse传递命令行参数"></a>1. 使用argparse传递命令行参数</h4><ul>
 <li><p>格式</p>
 <pre><code>import argparse
 parser = argparse.ArgumentParser()
@@ -339,26 +339,28 @@ print(args.feature)
 </code></pre></li>
 <li><p>调用</p>
 <pre><code>python test.py -v 0.3 --feature
-</code></pre><p>####2. 获取当前路径<br>  os.path.abspath(‘.’)<br>  #或者<br>  os.system(‘pwd’)</p>
+</code></pre><h4 id="2-获取当前路径"><a href="#2-获取当前路径" class="headerlink" title="2. 获取当前路径"></a>2. 获取当前路径</h4><p>  os.path.abspath(‘.’)<br>  #或者<br>  os.system(‘pwd’)</p>
 </li>
 </ul>
-<p>####3. 判断类型<br>    t=[1,2]<br>    print(isinstance(t, list))</p>
-<p>####4. 对字典排序</p>
-<pre><code>#按照values从大到小排序
+<h4 id="3-判断类型"><a href="#3-判断类型" class="headerlink" title="3. 判断类型"></a>3. 判断类型</h4><pre><code>t=[1,2]
+print(isinstance(t, list))
+</code></pre><h4 id="4-对字典排序"><a href="#4-对字典排序" class="headerlink" title="4. 对字典排序"></a>4. 对字典排序</h4><pre><code>#按照values从大到小排序
 for key, values in sorted(d.items(), key=lambda item:item[1]，reverse=True)
     print(&apos;key:{}/value:{}&apos;.format(key, value))
-</code></pre><p>####5. 遍历文件的两种方法</p>
-<pre><code>os.listdir(path)
+</code></pre><h4 id="5-遍历文件的两种方法"><a href="#5-遍历文件的两种方法" class="headerlink" title="5. 遍历文件的两种方法"></a>5. 遍历文件的两种方法</h4><pre><code>os.listdir(path)
 
 for root, dirs, files in os.walk(path):
     for file in files:
         print(file)
-</code></pre><p>####6. 删除文件和目录<br>    import os<br>    import shutil<br>    os.remove(‘D:/1.txt’)<br>    shutil.rmtree(‘D:/test/‘)</p>
-
+</code></pre><h4 id="6-删除文件和目录"><a href="#6-删除文件和目录" class="headerlink" title="6. 删除文件和目录"></a>6. 删除文件和目录</h4><pre><code>import os
+import shutil    
+os.remove(&apos;D:/1.txt&apos;)
+shutil.rmtree(&apos;D:/test/&apos;)
+</code></pre>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/python/" data-id="cj78gw4yf0004w7pvjkb5d1e7" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/python/" data-id="cj78gyp780003xepv2tpopbfo" class="article-share-link">Share</a>
       
       
     </footer>
@@ -371,7 +373,7 @@ for root, dirs, files in os.walk(path):
     <article id="post-maven" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/maven/" class="article-date">
-  <time datetime="2017-09-06T03:28:54.937Z" itemprop="datePublished">2017-09-06</time>
+  <time datetime="2017-09-06T03:33:20.222Z" itemprop="datePublished">2017-09-06</time>
 </a>
     
   </div>
@@ -390,17 +392,16 @@ for root, dirs, files in os.walk(path):
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>####1. 打包命令,忽略测试</p>
-<ul>
-<li>mvn package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true<br>####2. 编译</li>
-<li>mvn compile<br>####3. 拷贝到本地库</li>
+        <h4 id="1-打包命令-忽略测试"><a href="#1-打包命令-忽略测试" class="headerlink" title="1. 打包命令,忽略测试"></a>1. 打包命令,忽略测试</h4><ul>
+<li>mvn package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true<h4 id="2-编译"><a href="#2-编译" class="headerlink" title="2. 编译"></a>2. 编译</h4></li>
+<li>mvn compile<h4 id="3-拷贝到本地库"><a href="#3-拷贝到本地库" class="headerlink" title="3. 拷贝到本地库"></a>3. 拷贝到本地库</h4></li>
 <li>mvn install</li>
 </ul>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/maven/" data-id="cj78gw4yd0002w7pv30cmbzq4" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/maven/" data-id="cj78gyp770002xepva3ozum7g" class="article-share-link">Share</a>
       
       
     </footer>
@@ -413,7 +414,7 @@ for root, dirs, files in os.walk(path):
     <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/git/" class="article-date">
-  <time datetime="2017-09-06T03:28:54.909Z" itemprop="datePublished">2017-09-06</time>
+  <time datetime="2017-09-06T03:33:20.202Z" itemprop="datePublished">2017-09-06</time>
 </a>
     
   </div>
@@ -432,12 +433,11 @@ for root, dirs, files in os.walk(path):
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>####1. git stash：清除更改</p>
-
+        <h4 id="1-git-stash：清除更改"><a href="#1-git-stash：清除更改" class="headerlink" title="1. git stash：清除更改"></a>1. git stash：清除更改</h4>
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/git/" data-id="cj78gw4y60000w7pvefmoawsd" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/git/" data-id="cj78gyp6z0000xepv2bma9apd" class="article-share-link">Share</a>
       
       
     </footer>
@@ -482,7 +482,7 @@ for root, dirs, files in os.walk(path):
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/hello-world/" data-id="cj78gw4yb0001w7pv9rqnyv4l" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/hello-world/" data-id="cj78gyp740001xepv5yiqhavt" class="article-share-link">Share</a>
       
       
     </footer>
