@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://zhugy.com">
   <title>python常用命令 | knight</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 使用argparse传递命令行参数 格式 1234567891011import argparseparser = argparse.ArgumentParser()parser.add_argument(&amp;apos;-v&amp;apos;, &amp;apos;--version&amp;apos;,type=float, default=0.2, help=&amp;apos;the version&amp;apos;)#">
+  <meta name="description" content="1. 使用argparse传递命令行参数 格式  1234567891011import argparseparser = argparse.ArgumentParser()parser.add_argument(&apos;-v&apos;, &apos;--version&apos;,type=float, default=0.2, help=&apos;the version&apos;)对于boolparser.add_argument(&apos;--fe">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python常用命令">
 <meta property="og:url" content="http://zhugy.com/2017/09/06/python/index.html">
 <meta property="og:site_name" content="knight">
-<meta property="og:description" content="1. 使用argparse传递命令行参数 格式 1234567891011import argparseparser = argparse.ArgumentParser()parser.add_argument(&amp;apos;-v&amp;apos;, &amp;apos;--version&amp;apos;,type=float, default=0.2, help=&amp;apos;the version&amp;apos;)#">
+<meta property="og:description" content="1. 使用argparse传递命令行参数 格式  1234567891011import argparseparser = argparse.ArgumentParser()parser.add_argument(&apos;-v&apos;, &apos;--version&apos;,type=float, default=0.2, help=&apos;the version&apos;)对于boolparser.add_argument(&apos;--fe">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2017-09-06T05:01:46.000Z">
+<meta property="og:updated_time" content="2017-09-06T05:04:23.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python常用命令">
-<meta name="twitter:description" content="1. 使用argparse传递命令行参数 格式 1234567891011import argparseparser = argparse.ArgumentParser()parser.add_argument(&amp;apos;-v&amp;apos;, &amp;apos;--version&amp;apos;,type=float, default=0.2, help=&amp;apos;the version&amp;apos;)#">
+<meta name="twitter:description" content="1. 使用argparse传递命令行参数 格式  1234567891011import argparseparser = argparse.ArgumentParser()parser.add_argument(&apos;-v&apos;, &apos;--version&apos;,type=float, default=0.2, help=&apos;the version&apos;)对于boolparser.add_argument(&apos;--fe">
   
     <link rel="alternative" href="/atom.xml" title="knight" type="application/atom+xml">
   
@@ -167,7 +167,7 @@
 
         
         <a href="/2017/09/06/python/" class="archive-article-date">
-  	<time datetime="2017-09-06T05:01:56.335Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+  	<time datetime="2017-09-06T05:04:30.579Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
       </header>
@@ -175,13 +175,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="1-使用argparse传递命令行参数"><a href="#1-使用argparse传递命令行参数" class="headerlink" title="1. 使用argparse传递命令行参数"></a>1. 使用argparse传递命令行参数</h4><ul>
-<li><p>格式</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import argparse</div><div class="line">parser = argparse.ArgumentParser()</div><div class="line">parser.add_argument(</div><div class="line">&apos;-v&apos;, &apos;--version&apos;,</div><div class="line">type=float, default=0.2, help=&apos;the version&apos;)</div><div class="line"># 对于bool</div><div class="line">parser.add_argument(&apos;--feature&apos;, dest=&apos;feature&apos;, action=&apos;store_true&apos;)</div><div class="line">parser.add_argument(&apos;--no-feature&apos;, dest=&apos;feature&apos;, action=&apos;store_false&apos;)</div><div class="line">args = parser.parse_args()</div><div class="line">print(args.version)</div><div class="line">print(args.feature)</div></pre></td></tr></table></figure>
-</li>
-<li><p>调用</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python test.py -v 0.3 --feature</div></pre></td></tr></table></figure>
-</li>
+<li>格式</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import argparse</div><div class="line">parser = argparse.ArgumentParser()</div><div class="line">parser.add_argument(</div><div class="line"><span class="string">'-v'</span>, <span class="string">'--version'</span>,</div><div class="line"><span class="built_in">type</span>=<span class="built_in">float</span>, default=0.2, <span class="built_in">help</span>=<span class="string">'the version'</span>)</div><div class="line">对于bool</div><div class="line">parser.add_argument(<span class="string">'--feature'</span>, dest=<span class="string">'feature'</span>, action=<span class="string">'store_true'</span>)</div><div class="line">parser.add_argument(<span class="string">'--no-feature'</span>, dest=<span class="string">'feature'</span>, action=<span class="string">'store_false'</span>)</div><div class="line">args = parser.parse_args()</div><div class="line"><span class="built_in">print</span>(args.version)</div><div class="line"><span class="built_in">print</span>(args.feature)</div></pre></td></tr></table></figure>
+<ul>
+<li>调用</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python test.py -v 0.3 --feature</div></pre></td></tr></table></figure>
 <a id="more"></a>
 <h4 id="2-获取当前路径"><a href="#2-获取当前路径" class="headerlink" title="2. 获取当前路径"></a>2. 获取当前路径</h4><pre><code>os.path.abspath(&apos;.&apos;)
 #或者
