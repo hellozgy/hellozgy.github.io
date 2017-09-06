@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://zhugy.com">
   <title>python常用命令 | knight</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 使用argparse传递命令行参数 格式‘’’  import argparse  parser = argparse.ArgumentParser()  parser.add_argument(  ‘-v’, ‘–version’,  type=float, default=0.2, help=’the version’)对于bool  parser.add_argument(‘–feat">
+  <meta name="description" content="1. 使用argparse传递命令行参数 格式 1234567891011import argparseparser = argparse.ArgumentParser()parser.add_argument(&amp;apos;-v&amp;apos;, &amp;apos;--version&amp;apos;,type=float, default=0.2, help=&amp;apos;the version&amp;apos;)#">
 <meta property="og:type" content="article">
 <meta property="og:title" content="python常用命令">
 <meta property="og:url" content="http://zhugy.com/2017/09/06/python/index.html">
 <meta property="og:site_name" content="knight">
-<meta property="og:description" content="1. 使用argparse传递命令行参数 格式‘’’  import argparse  parser = argparse.ArgumentParser()  parser.add_argument(  ‘-v’, ‘–version’,  type=float, default=0.2, help=’the version’)对于bool  parser.add_argument(‘–feat">
+<meta property="og:description" content="1. 使用argparse传递命令行参数 格式 1234567891011import argparseparser = argparse.ArgumentParser()parser.add_argument(&amp;apos;-v&amp;apos;, &amp;apos;--version&amp;apos;,type=float, default=0.2, help=&amp;apos;the version&amp;apos;)#">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2017-09-06T04:52:17.000Z">
+<meta property="og:updated_time" content="2017-09-06T05:01:46.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python常用命令">
-<meta name="twitter:description" content="1. 使用argparse传递命令行参数 格式‘’’  import argparse  parser = argparse.ArgumentParser()  parser.add_argument(  ‘-v’, ‘–version’,  type=float, default=0.2, help=’the version’)对于bool  parser.add_argument(‘–feat">
+<meta name="twitter:description" content="1. 使用argparse传递命令行参数 格式 1234567891011import argparseparser = argparse.ArgumentParser()parser.add_argument(&amp;apos;-v&amp;apos;, &amp;apos;--version&amp;apos;,type=float, default=0.2, help=&amp;apos;the version&amp;apos;)#">
   
     <link rel="alternative" href="/atom.xml" title="knight" type="application/atom+xml">
   
@@ -167,7 +167,7 @@
 
         
         <a href="/2017/09/06/python/" class="archive-article-date">
-  	<time datetime="2017-09-06T04:52:29.845Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+  	<time datetime="2017-09-06T05:01:56.335Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
       </header>
@@ -175,9 +175,11 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h4 id="1-使用argparse传递命令行参数"><a href="#1-使用argparse传递命令行参数" class="headerlink" title="1. 使用argparse传递命令行参数"></a>1. 使用argparse传递命令行参数</h4><ul>
-<li>格式<br>‘’’<br>  import argparse<br>  parser = argparse.ArgumentParser()<br>  parser.add_argument(<br>  ‘-v’, ‘–version’,<br>  type=float, default=0.2, help=’the version’)<h1 id="对于bool"><a href="#对于bool" class="headerlink" title="对于bool"></a>对于bool</h1>  parser.add_argument(‘–feature’, dest=’feature’, action=’store_true’)<br>  parser.add_argument(‘–no-feature’, dest=’feature’, action=’store_false’)<br>  args = parser.parse_args()<br>  print(args.version)<br>  print(args.feature)<br>‘’’</li>
+<li><p>格式</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div></pre></td><td class="code"><pre><div class="line">import argparse</div><div class="line">parser = argparse.ArgumentParser()</div><div class="line">parser.add_argument(</div><div class="line">&apos;-v&apos;, &apos;--version&apos;,</div><div class="line">type=float, default=0.2, help=&apos;the version&apos;)</div><div class="line"># 对于bool</div><div class="line">parser.add_argument(&apos;--feature&apos;, dest=&apos;feature&apos;, action=&apos;store_true&apos;)</div><div class="line">parser.add_argument(&apos;--no-feature&apos;, dest=&apos;feature&apos;, action=&apos;store_false&apos;)</div><div class="line">args = parser.parse_args()</div><div class="line">print(args.version)</div><div class="line">print(args.feature)</div></pre></td></tr></table></figure>
+</li>
 <li><p>调用</p>
-<p>  python test.py -v 0.3 –feature</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">python test.py -v 0.3 --feature</div></pre></td></tr></table></figure>
 </li>
 </ul>
 <a id="more"></a>
