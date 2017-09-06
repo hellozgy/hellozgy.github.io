@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="knight">
 <meta property="og:description" content="1. the difference sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1] softmax_cross_entropy">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2017-09-06T03:30:05.000Z">
+<meta property="og:updated_time" content="2017-09-06T04:05:45.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tensorflow常用命令">
 <meta name="twitter:description" content="1. the difference sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1] softmax_cross_entropy">
@@ -67,7 +67,7 @@
         <section id="main"><article id="post-tensorflow" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/tensorflow/" class="article-date">
-  <time datetime="2017-09-06T04:03:28.494Z" itemprop="datePublished">2017-09-06</time>
+  <time datetime="2017-09-06T04:05:51.250Z" itemprop="datePublished">2017-09-06</time>
 </a>
     
   </div>
@@ -111,23 +111,43 @@ sess = tf.Session(config=tf.ConfigProto(
 print(sess.run(c))
 </code></pre><ul>
 <li><strong>allow_soft_placement:</strong>If you would like TensorFlow to automatically choose an existing and supported device to run the operations in case the specified one doesn’t exist, you can set allow_soft_placement to True in the configuration option when creating the session.</li>
-<li><strong>log_device_placement:</strong>To find out which devices your operations and tensors are assigned to, create the session with log_device_placement configuration option set to True<h4 id="3-配置超参数"><a href="#3-配置超参数" class="headerlink" title="3. 配置超参数"></a>3. 配置超参数</h4>  flags = tf.app.flags<br>  FLAGS = flags.FLAGS<br>  flags.DEFINE_float(‘learning_rate’,1e-3,’Initial learning rate’)<br>  flags.DEFINE_integer(‘max_step’,20000,’Number of steps to run trainer’)<br>  flags.DEFINE_integer(‘hidden1’,128,’Number of units in hidden layer1’)<br>  flags.DEFINE_integer(‘hidden2’,32,’Number of units in hidden layer2’)<br>  flags.DEFINE_integer(‘batch_size’,100,’Batch Size’)<h1 id="引用的时候直接调用："><a href="#引用的时候直接调用：" class="headerlink" title="引用的时候直接调用："></a>引用的时候直接调用：</h1>  FLAGS.max_step<h4 id="4-cnn初始化"><a href="#4-cnn初始化" class="headerlink" title="4. cnn初始化"></a>4. cnn初始化</h4>  weights = tf.Variable(<br>  tf.truncated_normal([IMAGE_PIXELS, hidden1_units],<pre><code>stddev=1.0 / math.sqrt(float(IMAGE_PIXELS))),
-</code></pre>  name=’weights’)<br>  biases = tf.Variable(tf.zeros([hidden1_units]),<pre><code>name=&apos;biases&apos;)    
-</code></pre></li>
-<li><strong>tf.truncated_normal:</strong>正态分布，超过均值两个标准差的值会重新选择（截断）,stddev参数是标准差，一般设置为1/sqrt(n)，其中n为输入层的size</li>
-<li><p>b一般初始化为0</p>
-<h4 id="5-保存中间结果-Checkpoint-amp-并重新加载"><a href="#5-保存中间结果-Checkpoint-amp-并重新加载" class="headerlink" title="5. 保存中间结果 Checkpoint &amp; 并重新加载"></a>5. 保存中间结果 Checkpoint &amp; 并重新加载</h4><p>  saver = tf.train.Saver()<br>  …</p>
-<h1 id="saver只会保存最新的5次保存结果"><a href="#saver只会保存最新的5次保存结果" class="headerlink" title="saver只会保存最新的5次保存结果"></a>saver只会保存最新的5次保存结果</h1><p>  saver.save(sess, FLAGS.train_dir, global_step=step)</p>
-<h1 id="reload-in-the-future"><a href="#reload-in-the-future" class="headerlink" title="reload in the future"></a>reload in the future</h1><p>  model = tf.train.get_checkpoint_state(FLAGS.model_dir)</p>
-<pre><code>if model and model.model_checkpoint_path:
-    print(model.model_checkpoint_path)
-    saver.restore(sess, model.model_checkpoint_path)
-</code></pre></li>
+<li><strong>log_device_placement:</strong>To find out which devices your operations and tensors are assigned to, create the session with log_device_placement configuration option set to True</li>
 </ul>
-<h4 id="6-打开log日志"><a href="#6-打开log日志" class="headerlink" title="6. 打开log日志"></a>6. 打开log日志</h4><ul>
+<h4 id="3-配置超参数"><a href="#3-配置超参数" class="headerlink" title="3. 配置超参数"></a>3. 配置超参数</h4><pre><code>flags = tf.app.flags
+FLAGS = flags.FLAGS
+flags.DEFINE_float(&apos;learning_rate&apos;,1e-3,&apos;Initial learning rate&apos;)
+flags.DEFINE_integer(&apos;max_step&apos;,20000,&apos;Number of steps to run trainer&apos;)
+flags.DEFINE_integer(&apos;hidden1&apos;,128,&apos;Number of units in hidden layer1&apos;)
+flags.DEFINE_integer(&apos;hidden2&apos;,32,&apos;Number of units in hidden layer2&apos;)
+flags.DEFINE_integer(&apos;batch_size&apos;,100,&apos;Batch Size&apos;)
+# 引用的时候直接调用：
+FLAGS.max_step
+</code></pre><h4 id="4-cnn初始化"><a href="#4-cnn初始化" class="headerlink" title="4. cnn初始化"></a>4. cnn初始化</h4><pre><code>weights = tf.Variable(
+tf.truncated_normal([IMAGE_PIXELS, hidden1_units],
+                    stddev=1.0 / math.sqrt(float(IMAGE_PIXELS))),
+name=&apos;weights&apos;)
+biases = tf.Variable(tf.zeros([hidden1_units]),
+                 name=&apos;biases&apos;)    
+</code></pre><ul>
+<li><strong>tf.truncated_normal:</strong>正态分布，超过均值两个标准差的值会重新选择（截断）,stddev参数是标准差，一般设置为1/sqrt(n)，其中n为输入层的size</li>
+<li>b一般初始化为0</li>
+</ul>
+<h4 id="5-保存中间结果-Checkpoint-amp-并重新加载"><a href="#5-保存中间结果-Checkpoint-amp-并重新加载" class="headerlink" title="5. 保存中间结果 Checkpoint &amp; 并重新加载"></a>5. 保存中间结果 Checkpoint &amp; 并重新加载</h4><pre><code>saver = tf.train.Saver()
+...
+# saver只会保存最新的5次保存结果
+saver.save(sess, FLAGS.train_dir, global_step=step)
+
+# reload in the future
+model = tf.train.get_checkpoint_state(FLAGS.model_dir)
+        if model and model.model_checkpoint_path:
+            print(model.model_checkpoint_path)
+            saver.restore(sess, model.model_checkpoint_path)
+</code></pre><h4 id="6-打开log日志"><a href="#6-打开log日志" class="headerlink" title="6. 打开log日志"></a>6. 打开log日志</h4><ul>
 <li><p>tensorflow日志分5个依次严重的等级：debug,info,warn,error,fatal。tf默认是warn，<br>可以通过下面的语句修改log等级。设置INFO后，tf.contrib.learn训练loss将会每隔100次打印结果。</p>
 <pre><code>tf.logging.set_verbosity(tf.logging.INFO)
-</code></pre><h4 id="7-日志监控-amp-early-stopping"><a href="#7-日志监控-amp-early-stopping" class="headerlink" title="7. 日志监控 &amp; early stopping"></a>7. 日志监控 &amp; early stopping</h4></li>
+</code></pre></li>
+</ul>
+<h4 id="7-日志监控-amp-early-stopping"><a href="#7-日志监控-amp-early-stopping" class="headerlink" title="7. 日志监控 &amp; early stopping"></a>7. 日志监控 &amp; early stopping</h4><ul>
 <li><p>四种监视器</p>
 <p>  Monitor|Description<br>  ——-| ———–<br>  CaptureVariable | Saves a specified variable’s values into a collection at every n steps of training<br>  PrintTensor | Logs a specified tensor’s values at every n steps of training<br>  SummarySaver | Saves tf.Summary protocol buffers for a given tensor using a tf.summary.FileWriter at every n steps of training<br>  ValidationMonitor | Logs a specified set of evaluation metrics at every n steps of training, and, if desired, implements early stopping under certain conditions</p>
 </li>
@@ -218,7 +238,7 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/tensorflow/" data-id="cj78i1bw000068cpv3s3vapgr" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/tensorflow/" data-id="cj78i49nm00049jpvweonn6dq" class="article-share-link">Share</a>
       
       
     </footer>

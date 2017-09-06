@@ -12,7 +12,7 @@
 <meta property="og:site_name" content="knight">
 <meta property="og:description" content="1. 使用argparse传递命令行参数 格式 import argparse parser = argparse.ArgumentParser() parser.add_argument( &amp;apos;-v&amp;apos;, &amp;apos;--version&amp;apos;, type=float, default=0.2, help=&amp;apos;the version&amp;apos;) # 对于bool p">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2017-09-06T03:33:04.000Z">
+<meta property="og:updated_time" content="2017-09-06T04:05:16.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="python常用命令">
 <meta name="twitter:description" content="1. 使用argparse传递命令行参数 格式 import argparse parser = argparse.ArgumentParser() parser.add_argument( &amp;apos;-v&amp;apos;, &amp;apos;--version&amp;apos;, type=float, default=0.2, help=&amp;apos;the version&amp;apos;) # 对于bool p">
@@ -67,7 +67,7 @@
         <section id="main"><article id="post-python" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/python/" class="article-date">
-  <time datetime="2017-09-06T04:03:28.412Z" itemprop="datePublished">2017-09-06</time>
+  <time datetime="2017-09-06T04:05:51.160Z" itemprop="datePublished">2017-09-06</time>
 </a>
     
   </div>
@@ -102,10 +102,12 @@ print(args.feature)
 </code></pre></li>
 <li><p>调用</p>
 <pre><code>python test.py -v 0.3 --feature
-</code></pre><h4 id="2-获取当前路径"><a href="#2-获取当前路径" class="headerlink" title="2. 获取当前路径"></a>2. 获取当前路径</h4><p>  os.path.abspath(‘.’)<br>  #或者<br>  os.system(‘pwd’)</p>
-</li>
+</code></pre></li>
 </ul>
-<h4 id="3-判断类型"><a href="#3-判断类型" class="headerlink" title="3. 判断类型"></a>3. 判断类型</h4><pre><code>t=[1,2]
+<h4 id="2-获取当前路径"><a href="#2-获取当前路径" class="headerlink" title="2. 获取当前路径"></a>2. 获取当前路径</h4><pre><code>os.path.abspath(&apos;.&apos;)
+#或者
+os.system(&apos;pwd&apos;)
+</code></pre><h4 id="3-判断类型"><a href="#3-判断类型" class="headerlink" title="3. 判断类型"></a>3. 判断类型</h4><pre><code>t=[1,2]
 print(isinstance(t, list))
 </code></pre><h4 id="4-对字典排序"><a href="#4-对字典排序" class="headerlink" title="4. 对字典排序"></a>4. 对字典排序</h4><pre><code>#按照values从大到小排序
 for key, values in sorted(d.items(), key=lambda item:item[1]，reverse=True)
@@ -123,7 +125,7 @@ shutil.rmtree(&apos;D:/test/&apos;)
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/python/" data-id="cj78i1bvx00038cpvva2eetcc" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/python/" data-id="cj78i49no00069jpvbr47b62p" class="article-share-link">Share</a>
       
       
     </footer>
