@@ -62,167 +62,29 @@
       <div class="outer">
         <section id="main">
   
-    <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/06/git/" class="article-date">
-  <time datetime="2017-09-06T03:20:16.127Z" itemprop="datePublished">2017-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="git常用命令"><a href="#git常用命令" class="headerlink" title="git常用命令"></a>git常用命令</h1><hr>
-<p>####1. git stash：清除更改</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/git/" data-id="cj78ghywa00009lpvuukm264a" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-maven" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/06/maven/" class="article-date">
-  <time datetime="2017-09-06T03:20:14.871Z" itemprop="datePublished">2017-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="maven常用命令"><a href="#maven常用命令" class="headerlink" title="#maven常用命令"></a>#maven常用命令</h2><p>####1. 打包命令,忽略测试</p>
-<ul>
-<li>mvn package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true<br>####2. 编译</li>
-<li>mvn compile<br>####3. 拷贝到本地库</li>
-<li>mvn install</li>
-</ul>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/maven/" data-id="cj78ghywh00029lpvzvfal66l" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-python" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/06/python/" class="article-date">
-  <time datetime="2017-09-06T03:20:13.403Z" itemprop="datePublished">2017-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="python常用命令"><a href="#python常用命令" class="headerlink" title="python常用命令"></a>python常用命令</h1><hr>
-<p>####1. 使用argparse传递命令行参数</p>
-<ul>
-<li><p>格式</p>
-<pre><code>import argparse
-parser = argparse.ArgumentParser()
-parser.add_argument(
-&apos;-v&apos;, &apos;--version&apos;,
-type=float, default=0.2, help=&apos;the version&apos;)
-# 对于bool
-parser.add_argument(&apos;--feature&apos;, dest=&apos;feature&apos;, action=&apos;store_true&apos;)
- parser.add_argument(&apos;--no-feature&apos;, dest=&apos;feature&apos;, action=&apos;store_false&apos;)
-args = parser.parse_args()
-print(args.version)
-print(args.feature)
-</code></pre></li>
-<li><p>调用</p>
-<pre><code>python test.py -v 0.3 --feature
-</code></pre><p>####2. 获取当前路径<br>  os.path.abspath(‘.’)<br>  #或者<br>  os.system(‘pwd’)</p>
-</li>
-</ul>
-<p>####3. 判断类型<br>    t=[1,2]<br>    print(isinstance(t, list))</p>
-<p>####4. 对字典排序</p>
-<pre><code>#按照values从大到小排序
-for key, values in sorted(d.items(), key=lambda item:item[1]，reverse=True)
-    print(&apos;key:{}/value:{}&apos;.format(key, value))
-</code></pre><p>####5. 遍历文件的两种方法</p>
-<pre><code>os.listdir(path)
-
-for root, dirs, files in os.walk(path):
-    for file in files:
-        print(file)
-</code></pre><p>####6. 删除文件和目录<br>    import os<br>    import shutil<br>    os.remove(‘D:/1.txt’)<br>    shutil.rmtree(‘D:/test/‘)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/python/" data-id="cj78ghywi00039lpvqpif8f1b" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
-    <article id="post-pytorch" class="article article-type-post" itemscope itemprop="blogPost">
-  <div class="article-meta">
-    <a href="/2017/09/06/pytorch/" class="article-date">
-  <time datetime="2017-09-06T03:20:11.899Z" itemprop="datePublished">2017-09-06</time>
-</a>
-    
-  </div>
-  <div class="article-inner">
-    
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="pytorch常用命令"><a href="#pytorch常用命令" class="headerlink" title="pytorch常用命令"></a>pytorch常用命令</h2><p>####1. 形状改变<br>    x=torch.randn(2,3)<br>    x.view(-1, 6)</p>
-
-      
-    </div>
-    <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/pytorch/" data-id="cj78ghywj00049lpvxomyp4fn" class="article-share-link">Share</a>
-      
-      
-    </footer>
-  </div>
-  
-</article>
-
-
-  
     <article id="post-tensorflow" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/tensorflow/" class="article-date">
-  <time datetime="2017-09-06T03:20:07.140Z" itemprop="datePublished">2017-09-06</time>
+  <time datetime="2017-09-06T03:23:46.860Z" itemprop="datePublished">2017-09-06</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/06/tensorflow/">Tensorflow常用命令#</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <p>#Tensorflow常用命令#</p>
-<hr>
-<p>####1. the difference####</p>
+        <p>####1. the difference####</p>
 <ul>
 <li><strong>sparse_softmax_cross_entropy_with_logits:</strong> labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1]</li>
 <li><strong>softmax_cross_entropy_with_logits:</strong> labels must have the shape [batch_size, num_classes] and dtype float32 or float64.</li>
@@ -353,7 +215,7 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/tensorflow/" data-id="cj78ghywl00069lpvbwukji59" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/tensorflow/" data-id="cj78gm6ys0006jqpvdsvavsu7" class="article-share-link">Share</a>
       
       
     </footer>
@@ -366,21 +228,215 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
     <article id="post-shell" class="article article-type-post" itemscope itemprop="blogPost">
   <div class="article-meta">
     <a href="/2017/09/06/shell/" class="article-date">
-  <time datetime="2017-09-06T03:20:07.123Z" itemprop="datePublished">2017-09-06</time>
+  <time datetime="2017-09-06T03:23:46.839Z" itemprop="datePublished">2017-09-06</time>
 </a>
     
   </div>
   <div class="article-inner">
     
     
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/06/shell/">Shell 常用命令</a>
+    </h1>
+  
+
+      </header>
+    
     <div class="article-entry" itemprop="articleBody">
       
-        <h2 id="Shell-常用命令"><a href="#Shell-常用命令" class="headerlink" title="#Shell 常用命令"></a>#Shell 常用命令</h2><h4 id="查找字符串并显示行号"><a href="#查找字符串并显示行号" class="headerlink" title="查找字符串并显示行号"></a>查找字符串并显示行号</h4><p>grep -n ‘查找我’ 文件名</p>
+        <h4 id="查找字符串并显示行号"><a href="#查找字符串并显示行号" class="headerlink" title="查找字符串并显示行号"></a>查找字符串并显示行号</h4><p>grep -n ‘查找我’ 文件名</p>
 
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/shell/" data-id="cj78ghywk00059lpv7m5rl7ns" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/shell/" data-id="cj78gm6yq0004jqpvm31knmuw" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-pytorch" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/06/pytorch/" class="article-date">
+  <time datetime="2017-09-06T03:23:44.727Z" itemprop="datePublished">2017-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/06/pytorch/">pytorch常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####1. 形状改变<br>    x=torch.randn(2,3)<br>    x.view(-1, 6)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhugy.com/2017/09/06/pytorch/" data-id="cj78gm6yo0002jqpvur3s3mod" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-python" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/06/python/" class="article-date">
+  <time datetime="2017-09-06T03:23:43.134Z" itemprop="datePublished">2017-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/06/python/">python常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####1. 使用argparse传递命令行参数</p>
+<ul>
+<li><p>格式</p>
+<pre><code>import argparse
+parser = argparse.ArgumentParser()
+parser.add_argument(
+&apos;-v&apos;, &apos;--version&apos;,
+type=float, default=0.2, help=&apos;the version&apos;)
+# 对于bool
+parser.add_argument(&apos;--feature&apos;, dest=&apos;feature&apos;, action=&apos;store_true&apos;)
+ parser.add_argument(&apos;--no-feature&apos;, dest=&apos;feature&apos;, action=&apos;store_false&apos;)
+args = parser.parse_args()
+print(args.version)
+print(args.feature)
+</code></pre></li>
+<li><p>调用</p>
+<pre><code>python test.py -v 0.3 --feature
+</code></pre><p>####2. 获取当前路径<br>  os.path.abspath(‘.’)<br>  #或者<br>  os.system(‘pwd’)</p>
+</li>
+</ul>
+<p>####3. 判断类型<br>    t=[1,2]<br>    print(isinstance(t, list))</p>
+<p>####4. 对字典排序</p>
+<pre><code>#按照values从大到小排序
+for key, values in sorted(d.items(), key=lambda item:item[1]，reverse=True)
+    print(&apos;key:{}/value:{}&apos;.format(key, value))
+</code></pre><p>####5. 遍历文件的两种方法</p>
+<pre><code>os.listdir(path)
+
+for root, dirs, files in os.walk(path):
+    for file in files:
+        print(file)
+</code></pre><p>####6. 删除文件和目录<br>    import os<br>    import shutil<br>    os.remove(‘D:/1.txt’)<br>    shutil.rmtree(‘D:/test/‘)</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhugy.com/2017/09/06/python/" data-id="cj78gm6yr0005jqpv76pa973y" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-maven" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/06/maven/" class="article-date">
+  <time datetime="2017-09-06T03:23:41.174Z" itemprop="datePublished">2017-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/06/maven/">maven常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####1. 打包命令,忽略测试</p>
+<ul>
+<li>mvn package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true<br>####2. 编译</li>
+<li>mvn compile<br>####3. 拷贝到本地库</li>
+<li>mvn install</li>
+</ul>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhugy.com/2017/09/06/maven/" data-id="cj78gm6yp0003jqpvfytgw90d" class="article-share-link">Share</a>
+      
+      
+    </footer>
+  </div>
+  
+</article>
+
+
+  
+    <article id="post-git" class="article article-type-post" itemscope itemprop="blogPost">
+  <div class="article-meta">
+    <a href="/2017/09/06/git/" class="article-date">
+  <time datetime="2017-09-06T03:23:39.463Z" itemprop="datePublished">2017-09-06</time>
+</a>
+    
+  </div>
+  <div class="article-inner">
+    
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/09/06/git/">git常用命令</a>
+    </h1>
+  
+
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>####1. git stash：清除更改</p>
+
+      
+    </div>
+    <footer class="article-footer">
+      <a data-url="http://zhugy.com/2017/09/06/git/" data-id="cj78gm6ym0001jqpvi15b6nej" class="article-share-link">Share</a>
       
       
     </footer>
@@ -425,7 +481,7 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
       
     </div>
     <footer class="article-footer">
-      <a data-url="http://zhugy.com/2017/09/06/hello-world/" data-id="cj78ghywf00019lpvy2swvxz0" class="article-share-link">Share</a>
+      <a data-url="http://zhugy.com/2017/09/06/hello-world/" data-id="cj78gm6yh0000jqpv3wq45ghe" class="article-share-link">Share</a>
       
       
     </footer>
@@ -465,23 +521,23 @@ outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden]
       <ul>
         
           <li>
-            <a href="/2017/09/06/git/">(no title)</a>
+            <a href="/2017/09/06/tensorflow/">Tensorflow常用命令#</a>
           </li>
         
           <li>
-            <a href="/2017/09/06/maven/">(no title)</a>
+            <a href="/2017/09/06/shell/">Shell 常用命令</a>
           </li>
         
           <li>
-            <a href="/2017/09/06/python/">(no title)</a>
+            <a href="/2017/09/06/pytorch/">pytorch常用命令</a>
           </li>
         
           <li>
-            <a href="/2017/09/06/pytorch/">(no title)</a>
+            <a href="/2017/09/06/python/">python常用命令</a>
           </li>
         
           <li>
-            <a href="/2017/09/06/tensorflow/">(no title)</a>
+            <a href="/2017/09/06/maven/">maven常用命令</a>
           </li>
         
       </ul>
