@@ -165,21 +165,163 @@
 
         
         <a href="/2017/09/06/tensorflow/" class="archive-article-date">
-  	<time datetime="2017-09-06T04:38:00.871Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+  	<time datetime="2017-09-06T04:44:45.536Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-the-difference"><a href="#1-the-difference" class="headerlink" title="1. the difference"></a>1. the difference</h4><ul>
+        <a id="more"></a>
+<h4 id="1-the-difference"><a href="#1-the-difference" class="headerlink" title="1. the difference"></a>1. the difference</h4><ul>
 <li><strong>sparse_softmax_cross_entropy_with_logits:</strong> labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1]</li>
 <li><strong>softmax_cross_entropy_with_logits:</strong> labels must have the shape [batch_size, num_classes] and dtype float32 or float64.</li>
 </ul>
 <p>Labels used in softmax_cross_entropy_with_logits are the one hot version of labels used in sparse_softmax_cross_entropy_with_logits.</p>
-        
-          <a class="article-more-a" href="/2017/09/06/tensorflow/#more">more >></a>
-        
+<h4 id="2-配置tensorlfow"><a href="#2-配置tensorlfow" class="headerlink" title="2. 配置tensorlfow"></a>2. 配置tensorlfow</h4><pre><code>config = tf.ConfigProto()
+# 配置gpu资源随着需求增加，不设置会占用所有gpu资源
+config.gpu_options.allow_growth = True
+with tf.Session(config=config) as sess:
+    sess.run(init)
+
+
+# Creates a graph.
+with tf.device(&apos;/gpu:2&apos;):
+      a = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[2, 3], name=&apos;a&apos;)
+      b = tf.constant([1.0, 2.0, 3.0, 4.0, 5.0, 6.0], shape=[3, 2], name=&apos;b&apos;)
+      c = tf.matmul(a, b)
+# Creates a session with allow_soft_placement and log_device_placement set
+# to True.
+sess = tf.Session(config=tf.ConfigProto(
+  allow_soft_placement=True, log_device_placement=True))
+# Runs the op.
+print(sess.run(c))
+</code></pre><ul>
+<li><strong>allow_soft_placement:</strong>If you would like TensorFlow to automatically choose an existing and supported device to run the operations in case the specified one doesn’t exist, you can set allow_soft_placement to True in the configuration option when creating the session.</li>
+<li><strong>log_device_placement:</strong>To find out which devices your operations and tensors are assigned to, create the session with log_device_placement configuration option set to True</li>
+</ul>
+<h4 id="3-配置超参数"><a href="#3-配置超参数" class="headerlink" title="3. 配置超参数"></a>3. 配置超参数</h4><pre><code>flags = tf.app.flags
+FLAGS = flags.FLAGS
+flags.DEFINE_float(&apos;learning_rate&apos;,1e-3,&apos;Initial learning rate&apos;)
+flags.DEFINE_integer(&apos;max_step&apos;,20000,&apos;Number of steps to run trainer&apos;)
+flags.DEFINE_integer(&apos;hidden1&apos;,128,&apos;Number of units in hidden layer1&apos;)
+flags.DEFINE_integer(&apos;hidden2&apos;,32,&apos;Number of units in hidden layer2&apos;)
+flags.DEFINE_integer(&apos;batch_size&apos;,100,&apos;Batch Size&apos;)
+# 引用的时候直接调用：
+FLAGS.max_step
+</code></pre><h4 id="4-cnn初始化"><a href="#4-cnn初始化" class="headerlink" title="4. cnn初始化"></a>4. cnn初始化</h4><pre><code>weights = tf.Variable(
+tf.truncated_normal([IMAGE_PIXELS, hidden1_units],
+                    stddev=1.0 / math.sqrt(float(IMAGE_PIXELS))),
+name=&apos;weights&apos;)
+biases = tf.Variable(tf.zeros([hidden1_units]),
+                 name=&apos;biases&apos;)    
+</code></pre><ul>
+<li><strong>tf.truncated_normal:</strong>正态分布，超过均值两个标准差的值会重新选择（截断）,stddev参数是标准差，一般设置为1/sqrt(n)，其中n为输入层的size</li>
+<li>b一般初始化为0</li>
+</ul>
+<h4 id="5-保存中间结果-Checkpoint-amp-并重新加载"><a href="#5-保存中间结果-Checkpoint-amp-并重新加载" class="headerlink" title="5. 保存中间结果 Checkpoint &amp; 并重新加载"></a>5. 保存中间结果 Checkpoint &amp; 并重新加载</h4><pre><code>saver = tf.train.Saver()
+...
+# saver只会保存最新的5次保存结果
+saver.save(sess, FLAGS.train_dir, global_step=step)
+
+# reload in the future
+model = tf.train.get_checkpoint_state(FLAGS.model_dir)
+        if model and model.model_checkpoint_path:
+            print(model.model_checkpoint_path)
+            saver.restore(sess, model.model_checkpoint_path)
+</code></pre><h4 id="6-打开log日志"><a href="#6-打开log日志" class="headerlink" title="6. 打开log日志"></a>6. 打开log日志</h4><ul>
+<li><p>tensorflow日志分5个依次严重的等级：debug,info,warn,error,fatal。tf默认是warn，<br>可以通过下面的语句修改log等级。设置INFO后，tf.contrib.learn训练loss将会每隔100次打印结果。</p>
+<pre><code>tf.logging.set_verbosity(tf.logging.INFO)
+</code></pre></li>
+</ul>
+<h4 id="7-日志监控-amp-early-stopping"><a href="#7-日志监控-amp-early-stopping" class="headerlink" title="7. 日志监控 &amp; early stopping"></a>7. 日志监控 &amp; early stopping</h4><ul>
+<li><p>四种监视器</p>
+<p>  Monitor|Description<br>  ——-| ———–<br>  CaptureVariable | Saves a specified variable’s values into a collection at every n steps of training<br>  PrintTensor | Logs a specified tensor’s values at every n steps of training<br>  SummarySaver | Saves tf.Summary protocol buffers for a given tensor using a tf.summary.FileWriter at every n steps of training<br>  ValidationMonitor | Logs a specified set of evaluation metrics at every n steps of training, and, if desired, implements early stopping under certain conditions</p>
+</li>
+<li><p>下面这段代码每隔50步评估测试集(注意：如果要看到这些信息，要设置log等级为INFO)</p>
+<pre><code>validation_monitor = tf.contrib.learn.monitors.ValidationMonitor(
+test_set.data,
+test_set.target,
+every_n_steps=50)
+</code></pre><p>  ValidationMonitor依赖于checkpoints,所以在初始化classifier时要添加RunConfig，如下所示，表示每隔1秒保存依次checkpoint</p>
+<pre><code>classifier = tf.contrib.learn.DNNClassifier(
+feature_columns=feature_columns,
+hidden_units=[10, 20, 10],
+n_classes=3,
+model_dir=&quot;/tmp/iris_model&quot;,
+config=tf.contrib.learn.RunConfig(save_checkpoints_secs=1))
+</code></pre></li>
+<li><p>自定义</p>
+<pre><code>validation_metrics = {
+&quot;accuracy&quot;:
+    tf.contrib.learn.MetricSpec(
+        metric_fn=tf.contrib.metrics.streaming_accuracy,
+        prediction_key=tf.contrib.learn.PredictionKey.CLASSES),
+&quot;precision&quot;:
+    tf.contrib.learn.MetricSpec(
+        metric_fn=tf.contrib.metrics.streaming_precision,
+        prediction_key=tf.contrib.learn.PredictionKey.CLASSES),
+&quot;recall&quot;:
+    tf.contrib.learn.MetricSpec(
+        metric_fn=tf.contrib.metrics.streaming_recall,
+        prediction_key=tf.contrib.learn.PredictionKey.CLASSES)}
+
+# 最后三行设置early_stopping，分别代表评估指标，最小化还是最大化，early_stopping的步数
+validation_monitor = tf.contrib.learn.monitors.ValidationMonitor(
+test_set.data,
+test_set.target,
+every_n_steps=50,
+metrics=validation_metrics,
+early_stopping_metric=&quot;loss&quot;,
+early_stopping_metric_minimize=True,
+early_stopping_rounds=200)
+</code></pre></li>
+<li><p>可视化</p>
+<pre><code>tensorboard --logdir=./tmp/iris_model/ --host=127.0.0.1 --port=6006
+</code></pre></li>
+</ul>
+<h4 id="8-可视化tensor"><a href="#8-可视化tensor" class="headerlink" title="8. 可视化tensor"></a>8. 可视化tensor</h4><pre><code>def variable_summaries(var):
+  &quot;&quot;&quot;Attach a lot of summaries to a Tensor (for TensorBoard visualization).&quot;&quot;&quot;
+  with tf.name_scope(&apos;summaries&apos;):
+    mean = tf.reduce_mean(var)
+    tf.summary.scalar(&apos;mean&apos;, mean)
+    with tf.name_scope(&apos;stddev&apos;):
+      stddev = tf.sqrt(tf.reduce_mean(tf.square(var - mean)))
+    tf.summary.scalar(&apos;stddev&apos;, stddev)
+    tf.summary.scalar(&apos;max&apos;, tf.reduce_max(var))
+    tf.summary.scalar(&apos;min&apos;, tf.reduce_min(var))
+    tf.summary.histogram(&apos;histogram&apos;, var)
+# 调用
+with tf.name_scope(&apos;weights&apos;):
+  weights = weight_variable([input_dim, output_dim])
+  variable_summaries(weights)
+...
+# Merge all the summaries and write them out to /tmp/mnist_logs (by default)
+merged = tf.summary.merge_all()
+train_writer = tf.summary.FileWriter(FLAGS.summaries_dir + &apos;/train&apos;,
+                                      sess.graph)
+...
+summary, _ = sess.run([merged, train_step], feed_dict=feed_dict(True))
+train_writer.add_summary(summary, step)
+</code></pre><p>可视化命令参照第7条。</p>
+<h4 id="9-打印所有可训练变量"><a href="#9-打印所有可训练变量" class="headerlink" title="9. 打印所有可训练变量"></a>9. 打印所有可训练变量</h4><pre><code>with tf.Session() as sess:
+variables_names =[v.name for v in tf.trainable_variables()]
+values = sess.run(variables_names)
+for k,v in zip(variables_names, values):
+    print(k, v)
+</code></pre><h4 id="10-将稀疏矩阵转换为稠密矩阵"><a href="#10-将稀疏矩阵转换为稠密矩阵" class="headerlink" title="10. 将稀疏矩阵转换为稠密矩阵"></a>10. 将稀疏矩阵转换为稠密矩阵</h4><pre><code>tf.sparse_tensor_to_dense(labels, default_value=-1)
+</code></pre><p> 注：稀疏矩阵，比如indice=[[0,1],[1,2]],values=[10,32],<br>意思就是，2*3矩阵[[0,10,0],[0,0,32]]，默认将稀疏部分补0.</p>
+<h4 id="11-tensorflow实现双向双层RNN"><a href="#11-tensorflow实现双向双层RNN" class="headerlink" title="11. tensorflow实现双向双层RNN"></a>11. tensorflow实现双向双层RNN</h4><h1 id="双层双向RNN"><a href="#双层双向RNN" class="headerlink" title="双层双向RNN"></a>双层双向RNN</h1><pre><code>fw_cell = bn_rnn.BNGRUCell(self.config.n_hidden, self.training_placeholder)
+bw_cell = bn_rnn.BNGRUCell(self.config.n_hidden, self.training_placeholder)
+fw_cell = tf.nn.rnn_cell.DropoutWrapper(cell=fw_cell, output_keep_prob=self.drop_out_placeholder)
+bw_cell = tf.nn.rnn_cell.DropoutWrapper(cell=bw_cell, output_keep_prob=self.drop_out_placeholder)
+fw_cells = tf.nn.rnn_cell.MultiRNNCell([fw_cell] * 2)
+bw_cells = tf.nn.rnn_cell.MultiRNNCell([bw_cell] * 2 )
+
+_, state = tf.nn.bidirectional_dynamic_rnn(fw_cells,bw_cells,inputs,sequence_length=self.seq_length_placeholder,dtype=tf.float32)
+outputs = tf.concat((state[0][0], state[0][1], state[1][0], state[1][1]), 1)
+outputs = tf.reshape(outputs, [self.config.batch_size, 4 * self.config.n_hidden])
+</code></pre>
       
 
       
@@ -234,14 +376,15 @@
 
         
         <a href="/2017/09/06/shell/" class="archive-article-date">
-  	<time datetime="2017-09-06T04:38:00.851Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+  	<time datetime="2017-09-06T04:44:45.515Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-查找字符串并显示行号"><a href="#1-查找字符串并显示行号" class="headerlink" title="1. 查找字符串并显示行号"></a>1. 查找字符串并显示行号</h4><pre><code>grep -n &apos;查找我&apos; 文件名
+        <a id="more"></a>
+<h4 id="1-查找字符串并显示行号"><a href="#1-查找字符串并显示行号" class="headerlink" title="1. 查找字符串并显示行号"></a>1. 查找字符串并显示行号</h4><pre><code>grep -n &apos;查找我&apos; 文件名
 </code></pre>
       
 
@@ -297,14 +440,15 @@
 
         
         <a href="/2017/09/06/pytorch/" class="archive-article-date">
-  	<time datetime="2017-09-06T04:38:00.815Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+  	<time datetime="2017-09-06T04:44:45.479Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-形状改变"><a href="#1-形状改变" class="headerlink" title="1. 形状改变"></a>1. 形状改变</h4><pre><code>x=torch.randn(2,3)
+        <a id="more"></a>
+<h4 id="1-形状改变"><a href="#1-形状改变" class="headerlink" title="1. 形状改变"></a>1. 形状改变</h4><pre><code>x=torch.randn(2,3)
 x.view(-1, 6)
 </code></pre>
       
@@ -361,14 +505,15 @@ x.view(-1, 6)
 
         
         <a href="/2017/09/06/python/" class="archive-article-date">
-  	<time datetime="2017-09-06T04:38:00.797Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+  	<time datetime="2017-09-06T04:44:45.460Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-使用argparse传递命令行参数"><a href="#1-使用argparse传递命令行参数" class="headerlink" title="1. 使用argparse传递命令行参数"></a>1. 使用argparse传递命令行参数</h4><ul>
+        <a id="more"></a>
+<h4 id="1-使用argparse传递命令行参数"><a href="#1-使用argparse传递命令行参数" class="headerlink" title="1. 使用argparse传递命令行参数"></a>1. 使用argparse传递命令行参数</h4><ul>
 <li><p>格式</p>
 <pre><code>import argparse
 parser = argparse.ArgumentParser()
@@ -458,14 +603,15 @@ shutil.rmtree(&apos;D:/test/&apos;)
 
         
         <a href="/2017/09/06/maven/" class="archive-article-date">
-  	<time datetime="2017-09-06T04:38:00.780Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+  	<time datetime="2017-09-06T04:44:45.439Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-打包命令-忽略测试"><a href="#1-打包命令-忽略测试" class="headerlink" title="1. 打包命令,忽略测试"></a>1. 打包命令,忽略测试</h4><pre><code>mvn package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true
+        <a id="more"></a>
+<h4 id="1-打包命令-忽略测试"><a href="#1-打包命令-忽略测试" class="headerlink" title="1. 打包命令,忽略测试"></a>1. 打包命令,忽略测试</h4><pre><code>mvn package -Dmaven.test.skip=true -Dmaven.javadoc.skip=true
 </code></pre><h4 id="2-编译"><a href="#2-编译" class="headerlink" title="2. 编译"></a>2. 编译</h4><pre><code>mvn compile
 </code></pre><h4 id="3-拷贝到本地库"><a href="#3-拷贝到本地库" class="headerlink" title="3. 拷贝到本地库"></a>3. 拷贝到本地库</h4><pre><code>mvn install
 </code></pre>
@@ -523,14 +669,15 @@ shutil.rmtree(&apos;D:/test/&apos;)
 
         
         <a href="/2017/09/06/git/" class="archive-article-date">
-  	<time datetime="2017-09-06T04:38:00.760Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+  	<time datetime="2017-09-06T04:44:45.421Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-git-stash：清除更改"><a href="#1-git-stash：清除更改" class="headerlink" title="1. git stash：清除更改"></a>1. git stash：清除更改</h4>
+        <a id="more"></a>
+<h4 id="1-git-stash：清除更改"><a href="#1-git-stash：清除更改" class="headerlink" title="1. git stash：清除更改"></a>1. git stash：清除更改</h4>
       
 
       
