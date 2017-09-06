@@ -8,17 +8,17 @@
   <link rel="dns-prefetch" href="http://zhugy.com">
   <title>Tensorflow常用命令 | knight</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. the difference sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1] softmax_cross_entropy">
+  <meta name="description" content="1. the difference sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1] softmax_cross_entrop">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Tensorflow常用命令">
 <meta property="og:url" content="http://zhugy.com/2017/09/06/tensorflow/index.html">
 <meta property="og:site_name" content="knight">
-<meta property="og:description" content="1. the difference sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1] softmax_cross_entropy">
+<meta property="og:description" content="1. the difference sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1] softmax_cross_entrop">
 <meta property="og:locale" content="zh">
-<meta property="og:updated_time" content="2017-09-06T04:12:08.000Z">
+<meta property="og:updated_time" content="2017-09-06T04:35:33.000Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Tensorflow常用命令">
-<meta name="twitter:description" content="1. the difference sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1] softmax_cross_entropy">
+<meta name="twitter:description" content="1. the difference sparse_softmax_cross_entropy_with_logits: labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1] softmax_cross_entrop">
   
     <link rel="alternative" href="/atom.xml" title="knight" type="application/atom+xml">
   
@@ -167,14 +167,15 @@
 
         
         <a href="/2017/09/06/tensorflow/" class="archive-article-date">
-  	<time datetime="2017-09-06T04:14:22.843Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
+  	<time datetime="2017-09-06T04:35:45.899Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-09-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h4 id="1-the-difference"><a href="#1-the-difference" class="headerlink" title="1. the difference"></a>1. the difference</h4><ul>
+        <a id="more"></a>
+<h4 id="1-the-difference"><a href="#1-the-difference" class="headerlink" title="1. the difference"></a>1. the difference</h4><ul>
 <li><strong>sparse_softmax_cross_entropy_with_logits:</strong> labels must have the shape [batch_size] and the dtype int32 or int64. Each label is an int in range [0, num_classes-1]</li>
 <li><strong>softmax_cross_entropy_with_logits:</strong> labels must have the shape [batch_size, num_classes] and dtype float32 or float64.</li>
 </ul>
